@@ -18,8 +18,9 @@ export interface RestaurantCardType{
 }
 
 const fetchRestaurant = async ():Promise<RestaurantCardType[]> =>{
+
   const restaurants = await prisma.restaurant.findMany({
-    
+  
   select : {
 
     id:true,
@@ -29,6 +30,7 @@ const fetchRestaurant = async ():Promise<RestaurantCardType[]> =>{
     slug:true,
     location: true,
     price:true 
+
   }}
   )
 
@@ -50,7 +52,7 @@ export default async function Home() {
 
         {restaurants.map((restaurant)=>(
 
-          <RestaurantCard restaurant = {restaurant} />
+          <RestaurantCard restaurant = {restaurant} key={restaurant.id} />
 
         ))}
 
