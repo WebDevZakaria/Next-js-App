@@ -40,7 +40,7 @@ const fetchRestaurantBySlug = async (slug:string) =>{
       reviews:true
     }
   })
-
+  
  if (!restaurant){
 
   notFound()
