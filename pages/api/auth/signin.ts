@@ -10,9 +10,6 @@ const prisma = new PrismaClient()
 
 export default async function handler(req:NextApiRequest,res:NextApiResponse){
 
-
-
-
     if(req.method === "POST"){
 
         const errors:string[] = []

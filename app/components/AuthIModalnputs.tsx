@@ -50,7 +50,7 @@ function AuthIModalnputs({inputs,handleChangeIput,isSignin}:Props) {
 
 <div className="my-3 flex justify-between text-sm">
 
-        <input type="password" className="border rounded p-2 py-3 w-full" placeholder="Password" value={inputs.password} onChange={handleChangeIput} name = "passowrd" />
+        <input type="password" className="border rounded p-2 py-3 w-full" placeholder="Password" value={inputs.password} onChange={handleChangeIput} name = "password" />
 
         </div>
     </div>
