@@ -13,12 +13,14 @@ const prisma = new PrismaClient();
 
 interface Restaurant {
 
-      id:number,
-      name:string,
-      images:string[],
-      description:string,
-      slug:string,
-      reviews:Review
+      id:number;
+      name:string;
+      images:string[];
+      description:string;
+      slug:string;
+      reviews:Review;
+      open_time:string;
+      close_time:string;
 
 }
 
@@ -37,7 +39,9 @@ const fetchRestaurantBySlug = async (slug:string) =>{
       images:true,
       description:true,
       slug:true,
-      reviews:true
+      reviews:true,
+      open_time:true,
+      close_time:true
     }
   })
   
@@ -68,7 +72,7 @@ const restaurant = await fetchRestaurantBySlug(params.slug)
        <Reviews reviews = {restaurant.reviews} />
       </div>
       <div className="w-[27%] relative text-reg">
-        <Reservation />
+        <Reservation openTime = {restaurant.open_time} closeTime = {restaurant.close_time}  />
       </div>
     
     </>

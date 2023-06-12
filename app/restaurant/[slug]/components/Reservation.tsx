@@ -1,9 +1,46 @@
 "use client" 
 
 
-import { partySize } from "../../../../data"
+import { useState } from "react"
+import { partySize,times } from "../../../../data"
 
-function Reservation() {
+import DatePicker from "react-datepicker"
+
+
+
+function Reservation({openTime, closeTime}:{openTime:string;closeTime:string}) {
+
+  const [selectedDate,setSelectedDate] = useState<Date | null>(new Date())
+
+  const handleChangeDate = (date:Date | null) =>{
+    if(date){
+      return setSelectedDate(date) 
+    }
+    return setSelectedDate(null)
+    
+  }
+
+
+  const filterTimeByWindow = () =>{
+    const timesInWindow: typeof times = []
+    let isWithWindow = false
+    times.forEach(time =>{
+      if(time.time ===openTime){
+        isWithWindow = true
+      }
+      if(isWithWindow){
+        timesInWindow.push(time)
+      }
+      if(time.time ===closeTime){
+        isWithWindow = false
+      }
+    })
+
+    return timesInWindow
+
+
+  }
+
   return (
     <div className="fixed w-[15%] bg-white rounded p-3 shadow">
           <div className="text-center border-b pb-2 font-bold">
@@ -21,13 +58,15 @@ function Reservation() {
           <div className="flex justify-between">
             <div className="flex flex-col w-[48%]">
               <label htmlFor="">Date</label>
-              <input type="text" className="py-3 border-b font-light w-28" />
+              <DatePicker selected={selectedDate} onChange={handleChangeDate} className="py-3 border-b font-light text-reg w-24" dateFormat="MMMM d" wrapperClassName="w-[48%]" />
             </div>
             <div className="flex flex-col w-[48%]">
               <label htmlFor="">Time</label>
-              <select name="" id="" className="py-3 border-b font-light">
-                <option value="">7:30 AM</option>
-                <option value="">9:30 AM</option>
+              <select name="" id="" className="py-3 border-b font-light">                
+                {filterTimeByWindow().map((time) =>(
+                  <option value={time.time}>{time.displayTime}</option>
+
+                ))}
               </select>
             </div>
           </div>
