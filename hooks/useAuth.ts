@@ -10,6 +10,7 @@ const useAuth = () =>{
     const {setAuthState} = useContext(AuthenticationssContext)
     
     const signin = async (
+
         {
         email,password}:{
             email:string;password:string
@@ -53,6 +54,7 @@ const useAuth = () =>{
     }
 
     const signup = async (
+        
              {
         email,
         password,
